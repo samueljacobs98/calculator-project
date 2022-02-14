@@ -1,0 +1,54 @@
+@use './variables' as *;
+
+body {
+    .calculator {
+        padding: $padding;
+        background-color: $calculator-color;
+
+        .calculator__display {
+            font-family: $display-font;
+            color: $text-orange;
+
+            background-color: $black;
+
+            padding: $padding;
+
+            .display__input {
+                font-size: $input-font;
+            }
+            
+            .display__output {
+                font-size: $output-font;
+            }
+        }
+
+        .interface__button {
+            font-family: $interface-font;
+
+            border-radius: $border-radius;
+            border: solid rgba(0, 0, 0, 0.1) 1px;
+
+            position: relative;
+        }
+
+        .interface__button--clear {
+            background: linear-gradient(90deg, rgba(224,136,67,1) 0%, rgba(176,73,10,1) 100%);;
+        }
+        .interface__button--clear::after {            
+            border-radius: 0;
+            width: 100%;
+
+            position: absolute;
+            top: 0;
+            left: 0;
+            
+            background: linear-gradient(90deg, rgba(224,136,67,1) 100%, rgba(176,73,10,1) 0%);;
+        }
+        .interface__button--number {
+            background: linear-gradient(90deg, rgba(125,130,123,1) 0%, rgba(64,69,62,1) 100%);
+        }
+        .interface__button--operator, .interface__button--calculate {
+            background: linear-gradient(90deg, rgba(245,245,237,1) 0%, rgba(193,188,168,1) 100%);
+        }
+    }
+}
