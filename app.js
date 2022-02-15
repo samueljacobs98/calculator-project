@@ -33,7 +33,7 @@ const checkButtonType = (event) => {
 }
 
 const appendCharacter = (input) => {
-     bottomDisplayHTML.innerText += input;
+     topDisplayHTML.innerText += input;
 }
 
 const dealWithNumber = (number) => {
