@@ -29,17 +29,10 @@ const appendCharacter = (character) => {
 const dealWithNumber = (number) => {
 
     if (bottomDisplayHTML.innerText !== "0" && !containsOperator(topDisplayHTML.innerText, operatorsArray)) {
-        // console.log("working")
-        // console.log(operatorButtons)
         operatorButtons.forEach((button) => {
-            // console.log(button)
             button.classList.add("alert")
         })
-        // Set operator button class to alert
-        // operatorButtons.classList.add("alert");
-        // After 0.2s remove alert
         setTimeout(removeAlert, 250)
-        // alert("no")
     } else {
         appendCharacter(number)
     }
