@@ -77,6 +77,12 @@ const deleteLastItem = () => {
 }
 
 const calculate = () => {
+    if (bottomDisplayHTML.innerText === "0" &&
+    topDisplayHTML.innerText !== "" &&
+    !containsOperator(topDisplayHTML.innerText, operatorsArray)) {
+        return
+    }
+
     let solution = 0;
     let stringOperator = topDisplayHTML.innerText.charAt(0);
     operand1 = Number(bottomDisplayHTML.innerText)
