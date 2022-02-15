@@ -56,6 +56,11 @@ body {
                 background: linear-gradient(90deg, rgba(245,245,237,1) 0%, rgba(193,188,168,1) 100%);
             }
 
+            .alert {
+                background: $alert-red;
+                opacity: 0.2;
+            }
+
         }
 
         .button-wrapper--clear{

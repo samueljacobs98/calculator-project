@@ -88,6 +88,10 @@ body .calculator .button-wrapper .interface__button--number {
 body .calculator .button-wrapper .interface__button--operator, body .calculator .button-wrapper .interface__button--calculate {
   background: linear-gradient(90deg, #f5f5ed 0%, #c1bca8 100%);
 }
+body .calculator .button-wrapper .alert {
+  background: #D14D35;
+  opacity: 0.2;
+}
 body .calculator .button-wrapper--clear {
   background: linear-gradient(90deg, #b0490a 0%, #e08843 100%);
 }

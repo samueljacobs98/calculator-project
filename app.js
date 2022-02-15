@@ -1,57 +1,65 @@
+// Global Constants and Assets
 const operatorsArray = ["-", "÷", "×", "+"]
-
-// Get Buttons
+    // Get Buttons
 const buttons = document.querySelectorAll(".interface__button")
-
-// Get display
+const operatorButtons = document.querySelectorAll(".interface__button--operator")
+    // Get display
 const topDisplayHTML = document.querySelector(".display__input")
 const bottomDisplayHTML = document.querySelector(".display__output")
 
 // Functions
-// Check Button Type - number, operator, remover, calculate
 const checkButtonType = (event) => {
-    // console.log(event.target)
-    // console.log(event.target.innerText)
-    // console.log(typeof event.target.innerText)
-
     const value = event.target.innerText;
-
-    // If event.target.classList.contains "interface__button--number"
-        // call dealWithNumber(value)
-    // If event.target.classList.contains "interface__button--clear"
-        // call dealWithRemover(value)
 
     if (event.target.classList.contains("interface__button--number")) {
         dealWithNumber(value);
     } else if (event.target.classList.contains("interface__button--clear")) {
         dealWithRemover(value);
+    } else if (event.target.classList.contains("interface__button--calculate")) {
+        calculate();
+    } else if (event.target.classList.contains("interface__button--operator")) {
+        dealWithOperator(value);
     }
-    // If event.target.classList.contains "interface__button--calculate"
-        // call calculate()
-    // If event.target.classList.contains "interface__button--operator"
-        // call dealWithOperator(value)
 }
 
-const appendCharacter = (input) => {
-     topDisplayHTML.innerText += input;
+const appendCharacter = (character) => {
+     topDisplayHTML.innerText += character;
 }
 
 const dealWithNumber = (number) => {
-    appendCharacter(number)
+
+    if (bottomDisplayHTML.innerText !== "0" && !containsOperator(topDisplayHTML.innerText, operatorsArray)) {
+        // console.log("working")
+        // console.log(operatorButtons)
+        operatorButtons.forEach((button) => {
+            // console.log(button)
+            button.classList.add("alert")
+        })
+        // Set operator button class to alert
+        // operatorButtons.classList.add("alert");
+        // After 0.2s remove alert
+        setTimeout(removeAlert, 250)
+        // alert("no")
+    } else {
+        appendCharacter(number)
+    }
 }
 
 const dealWithOperator = (operator) => {
-    // appendCharacter(operator)
-    // Switch (operator)
-    // case "-"
+    if (topDisplayHTML.innerText === "") {
+        appendCharacter(operator)
+    } else if (!containsOperator(topDisplayHTML.innerText, operatorsArray) && 
+    bottomDisplayHTML.innerText === "0") {
+        bottomDisplayHTML.innerText = topDisplayHTML.innerText
+        topDisplayHTML.innerText = `${operator}`
+    } else if (containsOperator(topDisplayHTML.innerText, operatorsArray)) {
+        calculate()
+        appendCharacter(operator)
+    }
 }
 
 const dealWithRemover = (remover) => {
-    // console.log(remover)
-    // If remover === "C"
-        // call clear()
-    // If remover === "D"
-        // call deleteLastNumber()
+
     if (remover === "C") {
         clear()
     } else if (remover === "D") {
@@ -61,11 +69,58 @@ const dealWithRemover = (remover) => {
 
 const clear = () => {
     topDisplayHTML.innerText = ""
-    bottomDisplayHTML.innerText = ""
+    bottomDisplayHTML.innerText = "0"
 }
 
 const deleteLastItem = () => {
     topDisplayHTML.innerText = topDisplayHTML.innerText.substring(0, topDisplayHTML.innerHTML.length - 1);
+}
+
+const calculate = () => {
+    let solution = 0;
+    let stringOperator = topDisplayHTML.innerText.charAt(0);
+    operand1 = Number(bottomDisplayHTML.innerText)
+    operand2 = Number(topDisplayHTML.innerText.substring(1))
+
+    switch(stringOperator) {
+        case "-":
+            solution = operand1 - operand2;
+            break
+        case "÷":
+            solution = operand1 / operand2;
+            break
+        case "×":
+            solution = operand1 * operand2;
+            break
+        case "+":
+            solution = operand1 + operand2;
+            break
+    }
+    
+    topDisplayHTML.innerText = "";
+    bottomDisplayHTML.innerText = solution.toString();
+}
+
+const containsOperator = (string, arrayOfSubstrings, countMax) => {
+    countMax = countMax || 0;
+    let operatorCount = 0;
+    for (let i = 0; i < arrayOfSubstrings.length; i++) {
+        if (string.includes(`${arrayOfSubstrings[i]}`)) {
+            operatorCount++    
+        }
+    }
+
+    if (operatorCount > countMax) {
+        return true
+    } else {
+        return false
+    }
+}
+
+const removeAlert = () => {
+    operatorButtons.forEach((button) => {
+        button.classList.remove("alert")
+    })
 }
 
 // Logic
