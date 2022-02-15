@@ -1,0 +1,125 @@
+@import url("https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Red+Hat+Mono:wght@400;700&display=swap");
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  background-color: #1C2246;
+}
+
+body .calculator {
+  display: grid;
+  justify-content: center;
+  align-content: center;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: minmax(37.5%, auto) repeat(5, 12.5%);
+  gap: 0.125rem;
+  aspect-ratio: 2/3;
+  width: 80%;
+  max-height: 800px;
+  min-height: 24.125rem;
+  min-width: 12.5rem;
+}
+body .calculator .calculator__display {
+  grid-column: span 4;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: end;
+}
+body .calculator .button-wrapper {
+  min-width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+body .calculator .grid-two {
+  grid-column: span 2;
+}
+
+body .calculator {
+  padding: 1rem 0.5rem;
+  background-color: #C2C2B5;
+  box-shadow: 10px 10px #212121;
+}
+body .calculator .calculator__display {
+  font-family: "Orbitron", sans-serif;
+  color: #EA9929;
+  background-color: #212121;
+  outline: 2px solid #212121;
+  padding: 0.5rem;
+  word-wrap: break-word;
+  word-break: break-all;
+}
+body .calculator .calculator__display .display__input {
+  font-size: 1rem;
+  opacity: 0.8;
+}
+body .calculator .calculator__display .display__output {
+  font-size: 2rem;
+}
+body .calculator .button-wrapper {
+  outline: 2px solid #212121;
+  padding: 0.01rem;
+}
+body .calculator .button-wrapper .interface__button {
+  color: #c4c4c4;
+  font-family: "Red Hat Mono", monospace;
+  text-shadow: 0.2px 0.2px #c4c4c4, -0.2px -0.2px #444;
+  border-radius: 0.75rem;
+  border: solid rgba(0, 0, 0, 0.05) 1px;
+  width: 95%;
+  height: 95%;
+}
+body .calculator .button-wrapper .interface__button--clear {
+  background: linear-gradient(90deg, #e08843 0%, #b0490a 100%);
+}
+body .calculator .button-wrapper .interface__button--number {
+  background: linear-gradient(90deg, #7d827b 0%, #40453e 100%);
+}
+body .calculator .button-wrapper .interface__button--operator, body .calculator .button-wrapper .interface__button--calculate {
+  background: linear-gradient(90deg, #f5f5ed 0%, #c1bca8 100%);
+}
+body .calculator .button-wrapper--clear {
+  background: linear-gradient(90deg, #b0490a 0%, #e08843 100%);
+}
+body .calculator .button-wrapper--number {
+  background: linear-gradient(90deg, #40453e 0%, #7d827b 100%);
+}
+body .calculator .button-wrapper--operator, body .calculator .button-wrapper--calculate {
+  background: linear-gradient(90deg, #c1bca8 0%, #f5f5ed 100%);
+}
+body .calculator .interface__button:hover {
+  cursor: pointer;
+}
+
+@media screen and (min-width: 420px) {
+  body .calculator .calculator__display .display__input {
+    font-size: 1.5rem;
+  }
+  body .calculator .calculator__display .display__output {
+    font-size: 3rem;
+  }
+  body .calculator .button-wrapper .interface__button {
+    font-size: 1.2rem;
+  }
+}
+@media screen and (min-width: 660px) {
+  body .calculator .calculator__display .display__input {
+    font-size: 2rem;
+  }
+  body .calculator .calculator__display .display__output {
+    font-size: 4rem;
+  }
+  body .calculator .button-wrapper .interface__button {
+    font-size: 2rem;
+  }
+}
