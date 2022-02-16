@@ -76,8 +76,62 @@ body {
         .interface__button:hover {
             cursor: pointer;
         }
+
+        .additional {
+            background-color: $calculator-color;
+            // font-family: $display-font;
+            font-family: $interface-font;
+            // color: $background-blue;
+            color: $additional-orange;
+
+            padding: 0.2rem 0.7rem;
+            border-radius: 0 0 $padding $padding;
+            text-align: center;
+
+            box-shadow: 10px 10px $black;
+        }
+
+        .additional:hover {
+            cursor: pointer;
+        }
+    }
+
+    .additional-buttons {
+        background: $calculator-color;
+        padding: $padding;
+    
+        .button-wrapper {
+            aspect-ratio: 1 / 1;
+
+            background: linear-gradient(90deg, rgba(150,31,10,1) 0%, rgba(209,77,53,1) 100%);
+            outline: 2px solid $black;
+
+            padding: $button-padding;
+
+            .additional-buttons__button {
+                background: linear-gradient(90deg, rgba(209,77,53,1) 0%, rgba(150,31,10,1) 100%);
+                
+                color: $text-grey;
+                font-family: $interface-font;
+                text-shadow: 0.2px 0.2px #c4c4c4 , -0.2px -0.2px #444;;
+                font-size: $small-font;
+
+                border-radius: $border-radius;
+                border: solid rgba(0, 0, 0, 0.05) 1px;
+            }
+        }
+
+        .close-additional-buttons {
+            background-color: $calculator-color;
+            padding: 0.1rem $padding;
+        }
+
+        .close-additional-buttons:hover {
+            cursor: pointer;
+        }
     }
 }
+
 
 
 @media screen and (min-width: 420px) {
@@ -116,6 +170,14 @@ body {
 
             .button-wrapper {
                 .interface__button {
+                    font-size: $tablet-font;
+                }
+            }
+        }
+
+        .additional-buttons {       
+            .button-wrapper {
+                .additional-buttons__button {
                     font-size: $tablet-font;
                 }
             }

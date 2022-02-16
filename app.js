@@ -6,6 +6,11 @@ const operatorButtons = document.querySelectorAll(".interface__button--operator"
     // Get display
 const topDisplayHTML = document.querySelector(".display__input")
 const bottomDisplayHTML = document.querySelector(".display__output")
+    // Get additional button option
+const clickForMore = document.querySelector(".additional")
+const additionalButtonsContainer = document.querySelector(".additional-buttons")
+const closeAdditionalButtons = document.querySelector(".close-additional-buttons")
+const additionalButtons = document.querySelectorAll(".additional-buttons__button")
 
 // Functions
 const checkButtonType = (event) => {
@@ -21,6 +26,23 @@ const checkButtonType = (event) => {
         dealWithOperator(value);
     }
 }
+
+const checkAdditionalButtonType = (event) => {
+    const value = event.target.innerText;
+
+    if (value === "Ans") {
+        dealWithAns();
+    } else if (value === "π") {
+        dealWithPi();
+    } else if (value === "%") {
+        dealWithPercent();
+    } else if (value === "(" || value === ")") {
+        dealWithBracket(value);
+    } else if (value === "√") {
+        dealWithRoot( );
+    }
+}
+
 
 const appendCharacter = (character) => {
      topDisplayHTML.innerText += character;
@@ -138,8 +160,59 @@ const checkLastNumberForDecimal = (equation) => {
     return currentNumber.includes('.')
 }
 
+const dealWithAns = () => {
+    if (containsOperator(topDisplayHTML.innerText.charAt(topDisplayHTML.length - 1), operatorsArray)) {
+        appendCharacter(bottomDisplayHTML.innerText)
+    } else {
+        return
+    }
+}
+
+
+const dealWithPi = () => {
+    const pi = `${Math.PI}`
+    appendCharacter(pi)
+}
+const dealWithPercent = () => {
+    let currentNumber = "";
+    let equation = topDisplayHTML.innerText;
+     
+    if(equation.length === 0) {
+        return
+    }
+
+    for (let i = equation.length-1; i >= 0; i--) {
+        if (operatorsArray.includes(`${equation.charAt(i)}`)) {
+            break
+        } else {
+            currentNumber = equation.charAt(i) + currentNumber
+        }
+    }
+
+    topDisplayHTML.innerText = topDisplayHTML.innerText.substring(0, topDisplayHTML.innerText.length-currentNumber.length)
+    currentNumber = currentNumber * 0.01;
+    appendCharacter(`${currentNumber}`)
+    
+}
+
+const showAdditionalButtons = () => {
+    additionalButtonsContainer.classList.add("show-additional-buttons");
+    clickForMore.classList.add("hide-additional")
+}
+
+const hideAdditionalButtons = () => {
+    additionalButtonsContainer.classList.remove("show-additional-buttons");
+    clickForMore.classList.remove("hide-additional")
+}
+
 // Logic
 buttons.forEach(button => {
     button.addEventListener("click", checkButtonType)
 })
 
+additionalButtons.forEach(button => {
+    button.addEventListener("click", checkAdditionalButtonType)
+})
+
+clickForMore.addEventListener("click", showAdditionalButtons)
+closeAdditionalButtons.addEventListener("click", hideAdditionalButtons)

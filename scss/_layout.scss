@@ -3,6 +3,7 @@
 body {
     .calculator {
         display: grid;
+        flex-direction: column;
         justify-content: center;
         align-content: center;
 
@@ -15,6 +16,7 @@ body {
         width: 80%;
         max-height: 800px;
         min-height: 24.125rem;
+        max-width: 502px;
         min-width: 12.5rem;
 
         .calculator__display {
@@ -37,5 +39,57 @@ body {
         .grid-two {
             grid-column: span 2;
         }
+
+        position: relative;
+
+        .additional {
+            position: absolute;
+
+            min-height: $additional-height;
+
+            right: 0;
+            bottom: 0;
+            transform: translateY(90%);
+        }
+
+        .hide-additional {
+            display: none;
+        }
+    }
+    
+    .additional-buttons {
+        position: relative;
+        margin-top: 1rem;
+    
+        display: none;
+        flex-direction: column;
+        // max-width: 530px;
+    
+        .button-wrapper {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            
+            .additional-buttons__button {
+                width: 95%;
+                height: 95%;
+                padding: 10px;
+            }
+    
+            .additional-buttons__button:hover {
+                cursor: pointer;
+            }
+        }
+
+        .close-additional-buttons {
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            transform: translateY(95%)
+        }
+    }
+
+    .show-additional-buttons {
+        display: flex;
     }
 }

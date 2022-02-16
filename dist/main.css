@@ -8,7 +8,6 @@
 
 body {
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
   min-height: 100vh;
@@ -17,6 +16,7 @@ body {
 
 body .calculator {
   display: grid;
+  flex-direction: column;
   justify-content: center;
   align-content: center;
   grid-template-columns: repeat(4, 1fr);
@@ -26,7 +26,9 @@ body .calculator {
   width: 80%;
   max-height: 800px;
   min-height: 24.125rem;
+  max-width: 502px;
   min-width: 12.5rem;
+  position: relative;
 }
 body .calculator .calculator__display {
   grid-column: span 4;
@@ -43,6 +45,44 @@ body .calculator .button-wrapper {
 }
 body .calculator .grid-two {
   grid-column: span 2;
+}
+body .calculator .additional {
+  position: absolute;
+  min-height: 1.2rem;
+  right: 0;
+  bottom: 0;
+  transform: translateY(90%);
+}
+body .calculator .hide-additional {
+  display: none;
+}
+body .additional-buttons {
+  position: relative;
+  margin-top: 1rem;
+  display: none;
+  flex-direction: column;
+}
+body .additional-buttons .button-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+body .additional-buttons .button-wrapper .additional-buttons__button {
+  width: 95%;
+  height: 95%;
+  padding: 10px;
+}
+body .additional-buttons .button-wrapper .additional-buttons__button:hover {
+  cursor: pointer;
+}
+body .additional-buttons .close-additional-buttons {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  transform: translateY(95%);
+}
+body .show-additional-buttons {
+  display: flex;
 }
 
 body .calculator {
@@ -104,6 +144,44 @@ body .calculator .button-wrapper--operator, body .calculator .button-wrapper--ca
 body .calculator .interface__button:hover {
   cursor: pointer;
 }
+body .calculator .additional {
+  background-color: #C2C2B5;
+  font-family: "Red Hat Mono", monospace;
+  color: #DF8742;
+  padding: 0.2rem 0.7rem;
+  border-radius: 0 0 0.5rem 0.5rem;
+  text-align: center;
+  box-shadow: 10px 10px #212121;
+}
+body .calculator .additional:hover {
+  cursor: pointer;
+}
+body .additional-buttons {
+  background: #C2C2B5;
+  padding: 0.5rem;
+}
+body .additional-buttons .button-wrapper {
+  aspect-ratio: 1/1;
+  background: linear-gradient(90deg, #961f0a 0%, #d14d35 100%);
+  outline: 2px solid #212121;
+  padding: 0.01rem;
+}
+body .additional-buttons .button-wrapper .additional-buttons__button {
+  background: linear-gradient(90deg, #d14d35 0%, #961f0a 100%);
+  color: #c4c4c4;
+  font-family: "Red Hat Mono", monospace;
+  text-shadow: 0.2px 0.2px #c4c4c4, -0.2px -0.2px #444;
+  font-size: 1.2rem;
+  border-radius: 0.75rem;
+  border: solid rgba(0, 0, 0, 0.05) 1px;
+}
+body .additional-buttons .close-additional-buttons {
+  background-color: #C2C2B5;
+  padding: 0.1rem 0.5rem;
+}
+body .additional-buttons .close-additional-buttons:hover {
+  cursor: pointer;
+}
 
 @media screen and (min-width: 420px) {
   body .calculator .calculator__display .display__input {
@@ -124,6 +202,9 @@ body .calculator .interface__button:hover {
     font-size: 4rem;
   }
   body .calculator .button-wrapper .interface__button {
+    font-size: 2rem;
+  }
+  body .additional-buttons .button-wrapper .additional-buttons__button {
     font-size: 2rem;
   }
 }
