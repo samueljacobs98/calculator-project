@@ -27,12 +27,13 @@ const appendCharacter = (character) => {
 }
 
 const dealWithNumber = (number) => {
-
     if (bottomDisplayHTML.innerText !== "0" && !containsOperator(topDisplayHTML.innerText, operatorsArray)) {
         operatorButtons.forEach((button) => {
             button.classList.add("alert")
-        })
+        });
         setTimeout(removeAlert, 250)
+    } else if(number === "." && checkLastNumberForDecimal(topDisplayHTML.innerText)){
+        return;
     } else {
         appendCharacter(number)
     }
@@ -120,6 +121,21 @@ const removeAlert = () => {
     operatorButtons.forEach((button) => {
         button.classList.remove("alert")
     })
+}
+
+const checkLastNumberForDecimal = (equation) => {
+    let decimalCount = 0;
+    let currentNumber = ""
+    let breakCommand = ""
+    
+    for (let i = equation.length-1; i >= 0; i--) {
+        if (operatorsArray.includes(`${equation.charAt(i)}`)) {
+            break
+        } else {
+            currentNumber = equation.charAt(i) + currentNumber
+        }
+    }
+    return currentNumber.includes('.')
 }
 
 // Logic
