@@ -22,7 +22,7 @@ Throughout the project, GitHub was used for version control.
 
 Query selectors were used to obtain the necessary assets required from the HTML.
 
-A series of functions were divised to control the calculator function.
+A key aspect of the programming of the calculator was that the eval() function was not to be used. Therefore, a series of functions were divised to control the calculator function.
 A function called "checkButtonType" was used to determine what kind of button was clicked and what should happen as a result of the click event.
 
 For each type of button, different functions were employed.
