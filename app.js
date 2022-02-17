@@ -1,5 +1,7 @@
 // Global Constants and Assets
 const operatorsArray = ["-", "÷", "×", "+"]
+const bracketsArray = ["(", ")"]
+const numbersArray = ["1", "2", "3", "4", "5", "6", "7", "8", "9"]
     // Get Buttons
 const buttons = document.querySelectorAll(".interface__button")
 const operatorButtons = document.querySelectorAll(".interface__button--operator")
@@ -13,6 +15,7 @@ const closeAdditionalButtons = document.querySelector(".close-additional-buttons
 const additionalButtons = document.querySelectorAll(".additional-buttons__button")
 
 // Functions
+// Check Buttons
 const checkButtonType = (event) => {
     const value = event.target.innerText;
 
@@ -39,17 +42,13 @@ const checkAdditionalButtonType = (event) => {
     } else if (value === "(" || value === ")") {
         dealWithBracket(value);
     } else if (value === "√") {
-        dealWithRoot( );
+        dealWithRoot();
     }
 }
 
-
-const appendCharacter = (character) => {
-     topDisplayHTML.innerText += character;
-}
-
+// Deal with different inputs
 const dealWithNumber = (number) => {
-    if (bottomDisplayHTML.innerText !== "0" && !containsOperator(topDisplayHTML.innerText, operatorsArray)) {
+    if (bottomDisplayHTML.innerText !== "0" && !checkContained(topDisplayHTML.innerText, operatorsArray)) {
         operatorButtons.forEach((button) => {
             button.classList.add("alert")
         });
@@ -62,15 +61,22 @@ const dealWithNumber = (number) => {
 }
 
 const dealWithOperator = (operator) => {
-    if (topDisplayHTML.innerText === "") {
+    if (!checkContained(topDisplayHTML.innerText, numbersArray) &&
+    !checkContained(topDisplayHTML.innerText, operatorsArray)) {
         appendCharacter(operator)
-    } else if (!containsOperator(topDisplayHTML.innerText, operatorsArray) && 
-    bottomDisplayHTML.innerText === "0") {
+    } else if (!checkContained(topDisplayHTML.innerText, operatorsArray) && 
+    bottomDisplayHTML.innerText === "0" &&
+    !checkContained(topDisplayHTML.innerText, bracketsArray)) {
         bottomDisplayHTML.innerText = topDisplayHTML.innerText
         topDisplayHTML.innerText = `${operator}`
-    } else if (containsOperator(topDisplayHTML.innerText, operatorsArray)) {
+    } else if (checkContained(topDisplayHTML.innerText, bracketsArray) && !checkBracketsClosed()) {
+        appendCharacter(operator)
+    } else if (checkContained(topDisplayHTML.innerText, operatorsArray)) {
         calculate()
         appendCharacter(operator)
+        console.log("working")
+    } else {
+        alert ("new condition - fix bug")
     }
 }
 
@@ -83,91 +89,13 @@ const dealWithRemover = (remover) => {
     }
 }
 
-const clear = () => {
-    topDisplayHTML.innerText = ""
-    bottomDisplayHTML.innerText = "0"
-}
-
-const deleteLastItem = () => {
-    topDisplayHTML.innerText = topDisplayHTML.innerText.substring(0, topDisplayHTML.innerHTML.length - 1);
-}
-
-const calculate = () => {
-    if (bottomDisplayHTML.innerText === "0" &&
-    topDisplayHTML.innerText !== "" &&
-    !containsOperator(topDisplayHTML.innerText, operatorsArray)) {
-        return
-    }
-
-    let solution = 0;
-    let stringOperator = topDisplayHTML.innerText.charAt(0);
-    operand1 = Number(bottomDisplayHTML.innerText)
-    operand2 = Number(topDisplayHTML.innerText.substring(1))
-
-    switch(stringOperator) {
-        case "-":
-            solution = operand1 - operand2;
-            break
-        case "÷":
-            solution = operand1 / operand2;
-            break
-        case "×":
-            solution = operand1 * operand2;
-            break
-        case "+":
-            solution = operand1 + operand2;
-            break
-    }
-    
-    topDisplayHTML.innerText = "";
-    bottomDisplayHTML.innerText = solution.toString();
-}
-
-const containsOperator = (string, arrayOfSubstrings, countMax) => {
-    countMax = countMax || 0;
-    let operatorCount = 0;
-    for (let i = 0; i < arrayOfSubstrings.length; i++) {
-        if (string.includes(`${arrayOfSubstrings[i]}`)) {
-            operatorCount++    
-        }
-    }
-
-    if (operatorCount > countMax) {
-        return true
-    } else {
-        return false
-    }
-}
-
-const removeAlert = () => {
-    operatorButtons.forEach((button) => {
-        button.classList.remove("alert")
-    })
-}
-
-const checkLastNumberForDecimal = (equation) => {
-    let decimalCount = 0;
-    let currentNumber = ""
-    let breakCommand = ""
-    
-    for (let i = equation.length-1; i >= 0; i--) {
-        if (operatorsArray.includes(`${equation.charAt(i)}`)) {
-            break
-        } else {
-            currentNumber = equation.charAt(i) + currentNumber
-        }
-    }
-    return currentNumber.includes('.')
-}
-
 const dealWithAns = () => {
-    if (containsOperator(topDisplayHTML.innerText.charAt(topDisplayHTML.length - 1), operatorsArray)) {
+    if (checkContained(topDisplayHTML.innerText.charAt(topDisplayHTML.length - 1), operatorsArray)) {
         appendCharacter(bottomDisplayHTML.innerText)
     } else {
         return
     }
 }
-
 
 const dealWithPi = () => {
     const pi = `${Math.PI}`
@@ -192,7 +120,171 @@ const dealWithPercent = () => {
     topDisplayHTML.innerText = topDisplayHTML.innerText.substring(0, topDisplayHTML.innerText.length-currentNumber.length)
     currentNumber = currentNumber * 0.01;
     appendCharacter(`${currentNumber}`)
+}
+
+const dealWithRoot = () => {
+    const root = "sqrt("
+    appendCharacter(root)
+}
+
+const dealWithBracket = (bracket) => {
+    if (operatorsArray.includes(topDisplayHTML.innerText.charAt(topDisplayHTML.innerText.length - 1)) &&
+    bracket === ")") {
+        return
+    } else {
+        appendCharacter(bracket)
+    }
+}
+
+// Calculation Function
+const calculateInsideBrackets = (equation) => {    
+    let equationArray = [...equation]
     
+    for (let i = 1; i < equationArray.length; i++) {
+        if (equationArray[i-1] === "(" && equationArray[i] === ")") {
+            equationArray.splice(i-1, 2)
+        }
+    }
+
+    const complexOperator = (operator) => {
+        while (equationArray.includes(operator)) {
+            let opperand = [] 
+            opperand.push(equationArray.indexOf(operator))
+            for (let i = opperand[0] - 1; i >= 0; i--) {
+                if (/[^0-9.]/.test(equationArray[i])) {
+                    opperand.push(i+1)
+                    opperand.push(opperand[0]-1)
+                    opperand.push(opperand[0]+1)
+                    break
+                }
+            }
+            for (let i = opperand[3]; i < equationArray.length; i++) {
+                if (!/\d/.test(equationArray[i])  && equationArray[i] !== ".") {
+                    opperand.push(i-1)
+                    break
+                }
+            }
+    
+            let opperand1 = equationArray.slice(opperand[1],opperand[2]+1).join("")
+            let opperand2 = equationArray.slice(opperand[3],opperand[4]+1).join("")
+    
+            opperand1 = Number(opperand1)
+            opperand2 = Number(opperand2)
+    
+            equationArray.splice(opperand[1],opperand[4] - opperand[1] + 1,basicOperator(operator, opperand1, opperand2))
+        }
+    }
+
+    complexOperator("÷")
+    complexOperator("×")
+    complexOperator("+")
+    complexOperator("-")
+
+
+    if (equationArray[0] === "(" && equationArray[equationArray.length - 1] === ")") {
+        equationArray.shift()
+        equationArray.pop()
+    }
+    
+    equation = equationArray.join("")
+    return equation
+}
+
+const calculate = () => {
+    if (bottomDisplayHTML.innerText === "0" &&
+    topDisplayHTML.innerText !== "" &&
+    !checkContained(topDisplayHTML.innerText, operatorsArray) ||
+    !checkBracketsClosed()) {
+        return
+    }
+
+    while (checkContained(topDisplayHTML.innerText, bracketsArray)) {
+        const smallestNest = checkNestLocation(topDisplayHTML.innerText)
+        const stringToPass = topDisplayHTML.innerText.substring(smallestNest[0], smallestNest[1]+1)
+        topDisplayHTML.innerText = topDisplayHTML.innerText.substring(0, smallestNest[0]) + calculateInsideBrackets(stringToPass) + topDisplayHTML.innerText.substring(smallestNest[1]+1, topDisplayHTML.length)
+    }
+
+    console.log(basicOperator(checkOperator(topDisplayHTML.innerText), Number(bottomDisplayHTML.innerText), Number(topDisplayHTML.innerText.substring(1))))
+    bottomDisplayHTML.innerText = basicOperator(checkOperator(topDisplayHTML.innerText), Number(bottomDisplayHTML.innerText), Number(topDisplayHTML.innerText.substring(1)))
+    topDisplayHTML.innerText = ""
+}
+
+// Check functions
+const checkNestLocation = (equation) => {
+    let nestArray = [];
+    nestArray.push(equation.indexOf(")"))
+    for (let i = nestArray[0] - 1; i >= 0; i--) {
+        if (equation.charAt(i) === "(") {
+            nestArray.unshift(i)
+            break
+        }
+    }
+    return nestArray
+}
+
+const checkContained = (string, arrayOfSubstrings, countMax) => {
+    countMax = countMax || 0;
+    let operatorCount = 0;
+    for (let i = 0; i < arrayOfSubstrings.length; i++) {
+        if (string.includes(`${arrayOfSubstrings[i]}`)) {
+            operatorCount++    
+        }
+    }
+
+    if (operatorCount > countMax) {
+        return true
+    } else {
+        return false
+    }
+}
+
+const checkLastNumberForDecimal = (equation) => {
+    let decimalCount = 0;
+    let currentNumber = ""
+    let breakCommand = ""
+    
+    for (let i = equation.length-1; i >= 0; i--) {
+        if (operatorsArray.includes(`${equation.charAt(i)}`)) {
+            break
+        } else {
+            currentNumber = equation.charAt(i) + currentNumber
+        }
+    }
+    return currentNumber.includes('.')
+}
+
+const checkBracketsClosed = () => {
+    equation = topDisplayHTML.innerText
+    bracketCount = 0;
+    for (let i = 0; i < equation.length; i++) {
+        if (equation.charAt(i) === "(") {
+            bracketCount++
+        } else if (equation.charAt(i) === ")") {
+            bracketCount--
+        }
+    }
+    if (bracketCount === 0) {
+        return true
+    } else {
+        return false
+    }
+}
+
+const checkOperator = (equation) => {
+    let toReturn;
+    operatorsArray.forEach((operator) => {
+        if (equation.includes(operator)) {
+            toReturn = operator;
+        }
+    })
+    return toReturn
+}
+
+// Class-change Functions
+const removeAlert = () => {
+    operatorButtons.forEach((button) => {
+        button.classList.remove("alert")
+    })
 }
 
 const showAdditionalButtons = () => {
@@ -205,6 +297,29 @@ const hideAdditionalButtons = () => {
     clickForMore.classList.remove("hide-additional")
 }
 
+// Basic Functions
+const appendCharacter = (character) => topDisplayHTML.innerText += character;
+
+const clear = () => {
+    topDisplayHTML.innerText = ""
+    bottomDisplayHTML.innerText = "0"
+}
+
+const deleteLastItem = () => topDisplayHTML.innerText = topDisplayHTML.innerText.substring(0, topDisplayHTML.innerHTML.length - 1);
+
+
+const basicOperator = (operator, term1, term2) => {
+    switch(operator) {
+        case "-":
+            return term1 - term2;
+        case "÷":
+            return term1 / term2;
+        case "×":
+            return term1 * term2;
+        case "+":
+            return term1 + term2;
+    }
+}
 // Logic
 buttons.forEach(button => {
     button.addEventListener("click", checkButtonType)

@@ -161,6 +161,7 @@ body {
             .calculator__display {
                 .display__input {
                     font-size: $input-font-large;
+                    min-height: 3rem;
                 }
                 
                 .display__output {
@@ -184,14 +185,3 @@ body {
         }
     }
 }
-// @media screen and (min-width: 768px) {
-//     body {
-//         .calculator {
-//             .button-wrapper {
-//                 .interface__button {
-//                     font-size: $tablet-font;
-//                 }
-//             }
-//         }
-//     }
-// }
