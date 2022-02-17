@@ -1,187 +1,217 @@
-@use './variables' as *;
+@use "./variables" as *;
 
 body {
+  .calculator {
+    padding: $margin $padding;
+    background-color: $calculator-color;
+
+    box-shadow: 10px 10px $black;
+
+    .calculator__display {
+      font-family: $display-font;
+      color: $text-orange;
+
+      background-color: $black;
+      outline: 2px solid $black;
+
+      padding: $padding;
+
+      word-wrap: break-word;
+      word-break: break-all;
+
+      .display__input {
+        font-size: $input-font;
+        opacity: 0.8;
+      }
+
+      .display__output {
+        font-size: $output-font;
+      }
+    }
+
+    .button-wrapper {
+      outline: 2px solid $black;
+      padding: $button-padding;
+
+      .interface__button {
+        color: $text-grey;
+        font-family: $interface-font;
+        text-shadow: 0.2px 0.2px #c4c4c4, -0.2px -0.2px #444;
+
+        border-radius: $border-radius;
+        border: solid rgba(0, 0, 0, 0.05) 1px;
+
+        width: 95%;
+        height: 95%;
+      }
+
+      .interface__button--clear {
+        background: linear-gradient(
+          90deg,
+          rgba(224, 136, 67, 1) 0%,
+          rgba(176, 73, 10, 1) 100%
+        );
+      }
+      .interface__button--number {
+        background: linear-gradient(
+          90deg,
+          rgba(125, 130, 123, 1) 0%,
+          rgba(64, 69, 62, 1) 100%
+        );
+      }
+      .interface__button--operator,
+      .interface__button--calculate {
+        background: linear-gradient(
+          90deg,
+          rgba(245, 245, 237, 1) 0%,
+          rgba(193, 188, 168, 1) 100%
+        );
+      }
+
+      .alert {
+        background: $alert-red;
+        opacity: 0.2;
+      }
+    }
+
+    .button-wrapper--clear {
+      background: linear-gradient(
+        90deg,
+        rgba(176, 73, 10, 1) 0%,
+        rgba(224, 136, 67, 1) 100%
+      );
+    }
+    .button-wrapper--number {
+      background: linear-gradient(
+        90deg,
+        rgba(64, 69, 62, 1) 0%,
+        rgba(125, 130, 123, 1) 100%
+      );
+    }
+    .button-wrapper--operator,
+    .button-wrapper--calculate {
+      background: linear-gradient(
+        90deg,
+        rgba(193, 188, 168, 1) 0%,
+        rgba(245, 245, 237, 1) 100%
+      );
+    }
+
+    .interface__button:hover {
+      cursor: pointer;
+    }
+
+    .additional {
+      background-color: $calculator-color;
+      // font-family: $display-font;
+      font-family: $interface-font;
+      // color: $background-blue;
+      color: $additional-orange;
+
+      padding: 0.2rem 0.7rem;
+      border-radius: 0 0 $padding $padding;
+      text-align: center;
+
+      box-shadow: 10px 10px $black;
+    }
+
+    .additional:hover {
+      cursor: pointer;
+    }
+  }
+
+  .additional-buttons {
+    background: $calculator-color;
+    padding: $padding;
+
+    .button-wrapper {
+      aspect-ratio: 1 / 1;
+
+      background: linear-gradient(
+        90deg,
+        rgba(150, 31, 10, 1) 0%,
+        rgba(209, 77, 53, 1) 100%
+      );
+      outline: 2px solid $black;
+
+      padding: $button-padding;
+
+      .additional-buttons__button {
+        background: linear-gradient(
+          90deg,
+          rgba(209, 77, 53, 1) 0%,
+          rgba(150, 31, 10, 1) 100%
+        );
+
+        color: $text-grey;
+        font-family: $interface-font;
+        text-shadow: 0.2px 0.2px #c4c4c4, -0.2px -0.2px #444;
+        font-size: $small-font;
+
+        border-radius: $border-radius;
+        border: solid rgba(0, 0, 0, 0.05) 1px;
+      }
+    }
+
+    .close-additional-buttons {
+      background-color: $calculator-color;
+      padding: 0.1rem $padding;
+    }
+
+    .close-additional-buttons:hover {
+      cursor: pointer;
+    }
+  }
+}
+
+@media screen and (min-width: 420px) {
+  body {
     .calculator {
-        padding: $margin $padding;
-        background-color: $calculator-color;
-
-        box-shadow: 10px 10px $black;
-
-        .calculator__display {
-            font-family: $display-font;
-            color: $text-orange;
-
-            background-color: $black;
-            outline: 2px solid $black;
-
-
-            padding: $padding;
-
-            word-wrap: break-word;
-            word-break: break-all;
-
-            .display__input {
-                font-size: $input-font;
-                opacity: 0.8;
-            }
-            
-            .display__output {
-                font-size: $output-font;
-            }
+      .calculator__display {
+        .display__input {
+          font-size: $input-font-medium;
         }
 
-        .button-wrapper {
-            outline: 2px solid $black;
-            padding: $button-padding;
+        .display__output {
+          font-size: $output-font-medium;
+        }
+      }
 
-            .interface__button {
-                color: $text-grey;
-                font-family: $interface-font;
-                text-shadow: 0.2px 0.2px #c4c4c4 , -0.2px -0.2px #444;;
-    
-                border-radius: $border-radius;
-                border: solid rgba(0, 0, 0, 0.05) 1px;
-                
-                width: 95%;
-                height: 95%;
-            }
-    
-            .interface__button--clear {
-                background: linear-gradient(90deg, rgba(224,136,67,1) 0%, rgba(176,73,10,1) 100%);;
-            }
-            .interface__button--number {
-                background: linear-gradient(90deg, rgba(125,130,123,1) 0%, rgba(64,69,62,1) 100%);
-            }
-            .interface__button--operator, .interface__button--calculate {
-                background: linear-gradient(90deg, rgba(245,245,237,1) 0%, rgba(193,188,168,1) 100%);
-            }
-
-            .alert {
-                background: $alert-red;
-                opacity: 0.2;
-            }
-
+      .button-wrapper {
+        .interface__button {
+          font-size: $small-font;
+        }
+      }
+    }
+  }
+}
+@media screen and (min-width: 660px) {
+  body {
+    .calculator {
+      .calculator__display {
+        .display__input {
+          font-size: $input-font-large;
+          min-height: 3rem;
         }
 
-        .button-wrapper--clear{
-            background: linear-gradient(90deg,  rgba(176,73,10,1) 0%, rgba(224,136,67,1) 100%);
+        .display__output {
+          font-size: $output-font-large;
         }
-        .button-wrapper--number {
-            background: linear-gradient(90deg, rgba(64,69,62,1) 0%, rgba(125,130,123,1) 100%);
-        }
-        .button-wrapper--operator, .button-wrapper--calculate {
-            background: linear-gradient(90deg,  rgba(193,188,168,1) 0%, rgba(245,245,237,1) 100%);
-        }
+      }
 
-        .interface__button:hover {
-            cursor: pointer;
+      .button-wrapper {
+        .interface__button {
+          font-size: $tablet-font;
         }
-
-        .additional {
-            background-color: $calculator-color;
-            // font-family: $display-font;
-            font-family: $interface-font;
-            // color: $background-blue;
-            color: $additional-orange;
-
-            padding: 0.2rem 0.7rem;
-            border-radius: 0 0 $padding $padding;
-            text-align: center;
-
-            box-shadow: 10px 10px $black;
-        }
-
-        .additional:hover {
-            cursor: pointer;
-        }
+      }
     }
 
     .additional-buttons {
-        background: $calculator-color;
-        padding: $padding;
-    
-        .button-wrapper {
-            aspect-ratio: 1 / 1;
-
-            background: linear-gradient(90deg, rgba(150,31,10,1) 0%, rgba(209,77,53,1) 100%);
-            outline: 2px solid $black;
-
-            padding: $button-padding;
-
-            .additional-buttons__button {
-                background: linear-gradient(90deg, rgba(209,77,53,1) 0%, rgba(150,31,10,1) 100%);
-                
-                color: $text-grey;
-                font-family: $interface-font;
-                text-shadow: 0.2px 0.2px #c4c4c4 , -0.2px -0.2px #444;;
-                font-size: $small-font;
-
-                border-radius: $border-radius;
-                border: solid rgba(0, 0, 0, 0.05) 1px;
-            }
+      .button-wrapper {
+        .additional-buttons__button {
+          font-size: $tablet-font;
         }
-
-        .close-additional-buttons {
-            background-color: $calculator-color;
-            padding: 0.1rem $padding;
-        }
-
-        .close-additional-buttons:hover {
-            cursor: pointer;
-        }
+      }
     }
-}
-
-
-
-@media screen and (min-width: 420px) {
-    body {
-        .calculator {
-            .calculator__display {
-                .display__input {
-                    font-size: $input-font-medium;
-                }
-                
-                .display__output {
-                    font-size: $output-font-medium;
-                }
-            }
-
-            .button-wrapper {
-                .interface__button {
-                    font-size: $small-font;
-                }
-            }
-        }
-    }
-}
-@media screen and (min-width: 660px) {
-    body {
-        .calculator {
-            .calculator__display {
-                .display__input {
-                    font-size: $input-font-large;
-                    min-height: 3rem;
-                }
-                
-                .display__output {
-                    font-size: $output-font-large;
-                }
-            }
-
-            .button-wrapper {
-                .interface__button {
-                    font-size: $tablet-font;
-                }
-            }
-        }
-
-        .additional-buttons {       
-            .button-wrapper {
-                .additional-buttons__button {
-                    font-size: $tablet-font;
-                }
-            }
-        }
-    }
+  }
 }

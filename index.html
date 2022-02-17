@@ -1,97 +1,102 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Calculator</title>
-    <link rel="stylesheet" href="./dist/main.css">
-</head>
-<body>
+    <link rel="stylesheet" href="./dist/main.css" />
+  </head>
+  <body>
     <div class="calculator">
-        <div class="calculator__display">
-            <div class="display__input"></div>
-            <div class="display__output">0</div>
-        </div>
-        <div class="button-wrapper button-wrapper--clear  grid-two" id="clear-button">
-            <button class="interface__button interface__button--clear">C</button>
-        </div>
-        <div class="button-wrapper button-wrapper--clear" id="delete-button">
-            <button class="interface__button interface__button--clear">D</button>
-        </div>
-        <div class="button-wrapper button-wrapper--operator">
-            <button class="interface__button interface__button--operator">-</button>
-        </div>
-        <div class="button-wrapper button-wrapper--number">
-            <button class="interface__button interface__button--number">7</button>
-        </div>
-        <div class="button-wrapper button-wrapper--number">
-            <button class="interface__button interface__button--number">8</button>
-        </div>
-        <div class="button-wrapper button-wrapper--number">
-            <button class="interface__button interface__button--number">9</button>
-        </div>
-        <div class="button-wrapper button-wrapper--operator">
-            <button class="interface__button interface__button--operator">÷</button>
-        </div>
-        <div class="button-wrapper button-wrapper--number">
-            <button class="interface__button interface__button--number">4</button>
-        </div>
-        <div class="button-wrapper button-wrapper--number">
-            <button class="interface__button interface__button--number">5</button>
-        </div>
-        <div class="button-wrapper button-wrapper--number">
-            <button class="interface__button interface__button--number">6</button>
-        </div>
-        <div class="button-wrapper button-wrapper--operator">
-            <button class="interface__button interface__button--operator">×</button>
-        </div>
-        <div class="button-wrapper button-wrapper--number">
-            <button class="interface__button interface__button--number">1</button>
-        </div>
-        <div class="button-wrapper button-wrapper--number">
-            <button class="interface__button interface__button--number">2</button>
-        </div>
-        <div class="button-wrapper button-wrapper--number">
-            <button class="interface__button interface__button--number">3</button>
-        </div>
-        <div class="button-wrapper button-wrapper--operator">
-            <button class="interface__button interface__button--operator">+</button>
-        </div>
-        <div class="button-wrapper button-wrapper--number">
-            <button class="interface__button interface__button--number">0</button>
-        </div>
-        <div class="button-wrapper button-wrapper--number">
-            <button class="interface__button interface__button--number">.</button>
-        </div>
-        <div class="button-wrapper button-wrapper--calculate grid-two">
-            <button class="interface__button interface__button--calculate">=</button>
-        </div>
-        <aside class="additional">
-            <p class="extra-features">Click for more</p>
-        </aside>
+      <div class="calculator__display">
+        <div class="display__input"></div>
+        <div class="display__output">0</div>
+      </div>
+      <div
+        class="button-wrapper button-wrapper--clear grid-two"
+        id="clear-button"
+      >
+        <button class="interface__button interface__button--clear">C</button>
+      </div>
+      <div class="button-wrapper button-wrapper--clear" id="delete-button">
+        <button class="interface__button interface__button--clear">D</button>
+      </div>
+      <div class="button-wrapper button-wrapper--operator">
+        <button class="interface__button interface__button--operator">-</button>
+      </div>
+      <div class="button-wrapper button-wrapper--number">
+        <button class="interface__button interface__button--number">7</button>
+      </div>
+      <div class="button-wrapper button-wrapper--number">
+        <button class="interface__button interface__button--number">8</button>
+      </div>
+      <div class="button-wrapper button-wrapper--number">
+        <button class="interface__button interface__button--number">9</button>
+      </div>
+      <div class="button-wrapper button-wrapper--operator">
+        <button class="interface__button interface__button--operator">÷</button>
+      </div>
+      <div class="button-wrapper button-wrapper--number">
+        <button class="interface__button interface__button--number">4</button>
+      </div>
+      <div class="button-wrapper button-wrapper--number">
+        <button class="interface__button interface__button--number">5</button>
+      </div>
+      <div class="button-wrapper button-wrapper--number">
+        <button class="interface__button interface__button--number">6</button>
+      </div>
+      <div class="button-wrapper button-wrapper--operator">
+        <button class="interface__button interface__button--operator">×</button>
+      </div>
+      <div class="button-wrapper button-wrapper--number">
+        <button class="interface__button interface__button--number">1</button>
+      </div>
+      <div class="button-wrapper button-wrapper--number">
+        <button class="interface__button interface__button--number">2</button>
+      </div>
+      <div class="button-wrapper button-wrapper--number">
+        <button class="interface__button interface__button--number">3</button>
+      </div>
+      <div class="button-wrapper button-wrapper--operator">
+        <button class="interface__button interface__button--operator">+</button>
+      </div>
+      <div class="button-wrapper button-wrapper--number">
+        <button class="interface__button interface__button--number">0</button>
+      </div>
+      <div class="button-wrapper button-wrapper--number">
+        <button class="interface__button interface__button--number">.</button>
+      </div>
+      <div class="button-wrapper button-wrapper--calculate grid-two">
+        <button class="interface__button interface__button--calculate">
+          =
+        </button>
+      </div>
+      <aside class="additional">
+        <p class="extra-features">Click for more</p>
+      </aside>
     </div>
     <aside class="additional-buttons">
-        <div class="button-wrapper">
-            <button class="additional-buttons__button">Ans</button>
-        </div>
-        <div class="button-wrapper">
-            <button class="additional-buttons__button">π</button>
-        </div>
-        <div class="button-wrapper">
-            <button class="additional-buttons__button">%</button>
-        </div>
-        <div class="button-wrapper">
-            <button class="additional-buttons__button">√</button>
-        </div>
-        <div class="button-wrapper">
-            <button class="additional-buttons__button">(</button>
-        </div>
-        <div class="button-wrapper">
-            <button class="additional-buttons__button">)</button>
-        </div>
-        <div class="close-additional-buttons">×</div>
+      <div class="button-wrapper">
+        <button class="additional-buttons__button">Ans</button>
+      </div>
+      <div class="button-wrapper">
+        <button class="additional-buttons__button">π</button>
+      </div>
+      <div class="button-wrapper">
+        <button class="additional-buttons__button">%</button>
+      </div>
+      <div class="button-wrapper">
+        <button class="additional-buttons__button">√</button>
+      </div>
+      <div class="button-wrapper">
+        <button class="additional-buttons__button">(</button>
+      </div>
+      <div class="button-wrapper">
+        <button class="additional-buttons__button">)</button>
+      </div>
+      <div class="close-additional-buttons">×</div>
     </aside>
     <script src="app.js"></script>
-</body>
+  </body>
 </html>
