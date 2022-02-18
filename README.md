@@ -33,6 +33,8 @@ Once the basic calculator had been programmed and functioned correctly, addition
 
 Integration of Ans, Pi, and %, required basic functions. However, the square root relied on successful implementation of the bracket function. For the bracket function to work, it was necessary to ensure that mathematical opperator precedence (B.I.D.M.A.S.) was followed.
 
+Finally, users a feature was added to allow users to control the number of decimal places to which solutions and pi will be printed.
+
 ## Potential future improvements
 
 Given the opportunity to further develop the project, below are some additional features that could be added:
