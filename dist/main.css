@@ -16,6 +16,23 @@ body {
   background-color: #1c2246;
 }
 
+body .decimal-buttons {
+  position: relative;
+  bottom: 0;
+  left: 0;
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+body .decimal-buttons .decimal-buttons__container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+body .decimal-buttons .decimal-buttons__container .decimal-buttons__button {
+  margin: 5px;
+}
 body .calculator {
   display: grid;
   flex-direction: column;
@@ -89,6 +106,27 @@ body .show-additional-buttons {
   display: flex;
 }
 
+body .decimal-buttons {
+  background-color: #c2c2b5;
+  text-align: center;
+  font-family: "Red Hat Mono", monospace;
+}
+body .decimal-buttons .decimal-buttons__title {
+  margin: 0.125rem;
+  margin-top: 0.5rem;
+  font-size: 0.8rem;
+}
+body .decimal-buttons .decimal-buttons__number {
+  margin: 0.125rem;
+  font-weight: bold;
+  font-size: 1.2rem;
+}
+body .decimal-buttons .decimal-buttons__container .decimal-buttons__button {
+  aspect-ratio: 1/1;
+  min-width: 1.8rem;
+  font-size: 1.2rem;
+  border-radius: 50%;
+}
 body .calculator {
   padding: 1rem 0.5rem;
   background-color: #c2c2b5;
@@ -191,6 +229,9 @@ body .additional-buttons .close-additional-buttons:hover {
 }
 
 @media screen and (min-width: 420px) {
+  body .decimal-buttons .decimal-buttons__title {
+    font-size: 1rem;
+  }
   body .calculator .calculator__display .display__input {
     font-size: 1.5rem;
   }

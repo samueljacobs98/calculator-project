@@ -21,6 +21,9 @@ const closeAdditionalButtons = document.querySelector(
 const additionalButtons = document.querySelectorAll(
   ".additional-buttons__button"
 );
+const decimalButtonsContainer = document.querySelector(".decimal-buttons")
+const decimalButtons = document.querySelectorAll(".decimal-buttons__button")
+const decimalPlaces = document.querySelector(".decimal-buttons__number")
 
 // Functions
 // Check Buttons
@@ -53,6 +56,15 @@ const checkAdditionalButtonType = (event) => {
     dealWithRoot();
   }
 };
+
+const checkDecimalButtonType = (event) => {
+  const value = event.target.innerText;  
+  if (value === "+") {
+    decimalPlaces.innerText++
+  } else if (value === "-" && decimalPlaces.innerText > 0) {
+    decimalPlaces.innerText--
+  }
+}
 
 // Deal with different inputs
 const dealWithNumber = (number) => {
@@ -122,7 +134,7 @@ const dealWithAns = () => {
 };
 
 const dealWithPi = () => {
-  const pi = `${Math.PI}`;
+  const pi = `${(Math.PI).toFixed(decimalPlaces.innerText)}`;
   appendCharacter(pi);
 };
 const dealWithPercent = () => {
@@ -381,11 +393,13 @@ const removeAlert = () => {
 
 const showAdditionalButtons = () => {
   additionalButtonsContainer.classList.add("show-additional-buttons");
+  decimalButtonsContainer.classList.add("show-additional-buttons")
   clickForMore.classList.add("hide-additional");
 };
 
 const hideAdditionalButtons = () => {
   additionalButtonsContainer.classList.remove("show-additional-buttons");
+  decimalButtonsContainer.classList.remove("show-additional-buttons");
   clickForMore.classList.remove("hide-additional");
 };
 
@@ -406,13 +420,13 @@ const deleteLastItem = () =>
 const basicOperator = (operator, term1, term2) => {
   switch (operator) {
     case "-":
-      return term1 - term2;
+      return (term1 - term2).toFixed(decimalPlaces.innerText);
     case "÷":
-      return term1 / term2;
+      return (term1 / term2).toFixed(decimalPlaces.innerText);
     case "×":
-      return term1 * term2;
+      return (term1 * term2).toFixed(decimalPlaces.innerText);
     case "+":
-      return term1 + term2;
+      return (term1 + term2).toFixed(decimalPlaces.innerText);
   }
 };
 // Logic
@@ -424,5 +438,10 @@ additionalButtons.forEach((button) => {
   button.addEventListener("click", checkAdditionalButtonType);
 });
 
+decimalButtons.forEach((button) => {
+  button.addEventListener("click", checkDecimalButtonType)
+})
+
 clickForMore.addEventListener("click", showAdditionalButtons);
 closeAdditionalButtons.addEventListener("click", hideAdditionalButtons);
+

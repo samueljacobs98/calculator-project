@@ -1,6 +1,33 @@
 @use "./variables" as *;
 
 body {
+  .decimal-buttons {
+    background-color: $calculator-color;
+    text-align: center;
+    font-family: $interface-font;
+
+    .decimal-buttons__title {
+      margin: $gap;
+      margin-top: $padding;
+      font-size: $smallest-font;
+    }
+
+    .decimal-buttons__number {
+      margin: $gap;
+      font-weight: bold;
+      font-size: $small-font;
+    }
+
+    .decimal-buttons__container {
+      .decimal-buttons__button {
+        aspect-ratio: 1 / 1;
+        min-width: $decimal-button-height;
+        font-size: $small-font;
+        border-radius: 50%;
+      }
+    }
+  }
+
   .calculator {
     padding: $margin $padding;
     background-color: $calculator-color;
@@ -167,6 +194,12 @@ body {
 
 @media screen and (min-width: 420px) {
   body {
+    .decimal-buttons {
+      .decimal-buttons__title {
+        font-size: $input-font;
+      }
+    }
+
     .calculator {
       .calculator__display {
         .display__input {

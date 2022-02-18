@@ -12,7 +12,7 @@ The design of the calculator required skills including UI Design, HTML, CSS, SCS
 
 ### HTML and SCSS/CSS
 
-The Block Element Modifier (B.E.M.) classing approach for elements was utilised. The CSS/SCSS used display: grid to organise the calculator elements. The buttons were organised using flexbox.
+The CSS/SCSS used display: grid to organise the calculator elements. The buttons were organised using flexbox.
 
 A mobile-first approach was taken to designing the calculator, ensuring reponsiveness, hence a consistency of experience regardless of the platform through which the calculator is accessed.
 
@@ -37,7 +37,6 @@ Integration of Ans, Pi, and %, required basic functions. However, the square roo
 
 Given the opportunity to further develop the project, below are some additional features that could be added:
 
-- Allow user's to round solutions and Pi to their desired number of decimal places using JavaScripts .toFixed() function.
 - Implement trigonometric functions using JavaScript's Maths library.
 - Add an indices button so user's can perform relevant calculations faster.
 - Implement a factoral button through the use of a loop.

@@ -1,6 +1,27 @@
 @use "./variables" as *;
 
 body {
+  .decimal-buttons {
+    position: relative;
+    bottom: 0;
+    left: 0;
+
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    .decimal-buttons__container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      .decimal-buttons__button {
+        margin: 5px; // Make final decision
+      }
+    }
+  }
+
   .calculator {
     display: grid;
     flex-direction: column;
@@ -13,7 +34,6 @@ body {
     gap: $gap;
 
     width: 80%;
-    // max-height: 800px;
     min-height: 24rem;
     max-width: 502px;
     min-width: 12.5rem;
@@ -67,7 +87,6 @@ body {
 
     display: none;
     flex-direction: column;
-    // max-width: 530px;
 
     .button-wrapper {
       display: flex;
